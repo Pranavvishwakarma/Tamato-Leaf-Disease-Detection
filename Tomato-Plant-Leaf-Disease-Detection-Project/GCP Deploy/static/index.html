@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Tamato Leaf Disease Prediction</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="images/tomato.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+ <style>body {
+  font-family: "Open Sans", sans-serif;
+  color: #555555;
+}
+
+a {
+  text-decoration: none;
+  color: #7cc576;
+}
+
+a:hover {
+  color: #9ed49a;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", sans-serif;
+}
+#header {
+  height: 90px;
+  transition: all 0.5s;
+  z-index: 997;
+  transition: all 0.5s;
+  background: #fff;
+  box-shadow: 0 4px 10px -3px rgba(191, 191, 191, 0.5);
+}
+
+#header .logo h1 {
+  font-size: 28px;
+  margin: 0;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+#header .logo h1 a, #header .logo h1 a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+#header .logo img {
+  padding: 0;
+  margin: 0;
+  max-height: 40px;
+}
+
+@media (max-width: 992px) {
+  #header {
+    height: 70px;
+  }
+}
+
+.scrolled-offset {
+  margin-top: 90px;
+}
+
+@media (max-width: 992px) {
+  .scrolled-offset {
+    margin-top: 90px;
+  }
+}
+
+.navbar {
+  padding: 0;
+}
+
+.navbar ul {
+  margin: 0;
+  padding: 19px;
+  display: flex;
+  list-style: none;
+  align-items: center;
+}
+
+.navbar li {
+  position: relative;
+}
+
+.navbar a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0 10px 30px;
+  font-size: 15px;
+  color: #151515;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+.navbar a i {
+  font-size: 12px;
+  line-height: 0;
+  margin-left: 5px;
+}
+
+.navbar a:hover, .navbar .active, .navbar li:hover > a {
+  color: #7cc576;
+}
+
+.navbar .dropdown ul {
+  display: block;
+  position: absolute;
+  left: 14px;
+  top: calc(100% + 30px);
+  margin: 0;
+  padding: 10px 0;
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  background: #fff;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+  transition: 0.3s;
+}
+
+.navbar .dropdown ul li {
+  min-width: 200px;
+}
+
+.navbar .dropdown ul a {
+  padding: 10px 20px;
+  font-size: 15px;
+  text-transform: none;
+  font-weight: 600;
+}
+
+.navbar .dropdown ul a i {
+  font-size: 12px;
+}
+
+.navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
+  color: #7cc576;
+}
+
+.navbar .dropdown:hover > ul {
+  opacity: 1;
+  top: 100%;
+  visibility: visible;
+}
+
+.navbar .dropdown .dropdown ul {
+  top: 0;
+  left: calc(100% - 30px);
+  visibility: hidden;
+}
+
+.navbar .dropdown .dropdown:hover > ul {
+  opacity: 1;
+  top: 0;
+  left: 100%;
+  visibility: visible;
+}
+
+@media (max-width: 1366px) {
+  .navbar .dropdown .dropdown ul {
+    left: -90%;
+  }
+  .navbar .dropdown .dropdown:hover > ul {
+    left: -100%;
+  }
+}
+#hero {
+  width: 100%;
+  height: 100vh;
+  background: url("../img/hero-bg.png");
+  position: relative;
+}
+
+#hero .hero-container {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 0 15px;
+}
+
+#hero .hero-logo {
+  margin-bottom: 30px;
+}
+
+#hero h1 {
+  margin: 0 0 30px 0;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 56px;
+  color: #fff;
+}
+
+#hero h2 {
+  color: #aeaeae;
+  margin-bottom: 30px;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+#hero .btn-get-started {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 14px 30px;
+  border-radius: 23px;
+  margin: 10px;
+  color: #fff;
+  background: #7cc576;
+}
+
+#hero .btn-get-started:hover {
+  transition: 0.5s;
+  background: #fff;
+  color: #7cc576;
+}
+
+@media (min-width: 1024px) {
+  #hero {
+    background-attachment: fixed;
+  }
+}
+
+@media (max-width: 768px) {
+  #hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  #hero h2 {
+    line-height: 22px;
+  }
+}</style>
+
+  <!-- Template Main CSS File -->
+  
+</head>
+
+<body>
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" style="background-color: gray; background-image: url(tamaoleaf.jpg);">
+    <div class="hero-container">
+       <h1 style="color:white; border:2px solid #555555; border-radius: 20px ; margin:20px; padding: 20px;background-color: gray;"><b>Prestige Institute of Engineering Management and Research</b></h1>
+       <a href="index.html" class="hero-logo" data-aos="zoom-in"><img src="images/tomato.png" height="50" width="50" alt=""></a>
+      <h1 style="color:white; border:2px solid #6b6464; border-radius: 20px ; margin:20px; padding: 20px;background-color:gray;">Tomato Leaf Disease Prediction</h1>
+     
+      <a   href="#about" class="btn-get-started scrollto">Get Started</a>
+      <div style="color: white; font-size: 30px;margin-left: auto; padding: 20px; ">
+        <ul style="list-style: none;">
+          <li><b>Lead : Pranav Vishwakarma</b></li>
+          <li><b>Sachin Prajapati</b> </li>
+          <li><b>Mayuri Kaushal</b> </li>
+        </ul>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <!-- ======= Header ======= -->
+  <header id="header" >
+    
+<!-- 
+      <div class="logo">
+        <a href="index.html"><img src="images/tomato.png" alt="" class="img-fluid"></a>
+      </div> -->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a  href="#featured">How it Works</a></li>
+          <li><a  href="index12.html">Predict</a></li>
+          <li><a  href="#disease">Diseases</a></li>
+          
+        </ul>
+       
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= About Us Section ======= -->
+    <section id="about" style="justify-content: center;" >
+      <div style="justify-content: center;">
+
+        <div style="text-align: center;font-size: 32px;" >
+          <h2>About Us</h2>
+          
+        </div>
+
+        <div  style="justify-content: center;align-items: center;">
+          <div style="text-align: center; align-items: center;text-align: center;justify-content: center;"  >
+            <div  style="justify-content: center;"  >
+              <img src="images/tomato1.png "  alt="" width="900px" style="text-align: center; align-items: center; border-radius: 20px;">
+            </div>
+          </div>
+          <div style="align-items: center;justify-content: center; ">
+            <div style="margin: 40px; align-items: center; justify-content: center;">
+              
+              <p style="padding-left:40px ;" >
+                The easiest way
+                to keep your plants healthy
+              </p>
+              <ul style="list-style: none; ">
+                <li>We are planning to make this project available to everyone by
+                  deploying it as an app, which will take image of a leaf as an input and will tell the user about the
+                  health of the plant.</li>
+                <li>Along with the name of the diseases, it will also inform how
+                  accurate the prediction is.</li><br>
+                <li>If the plant has a disease, proper remedies for that disease will
+                  be provided, like the type of pesticides to use, suitable weather conditions etc</li>
+              </ul> <br>
+              <p style="padding-left:40px ;"> 
+                The purpose of this project is to identify plant disease in an accurate and timely way so that it
+                reduces the loss of the agricultural production and benefits the people in the best possible way.
+
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><br><!-- End About Us Section -->
+
+
+    <!-- ======= Featured Section ======= -->
+    <section id="featured" style="justify-content: center; align-items: CENTER;">
+      <div style="text-align: center; font-size: 32px;">
+        <h2>How it Works</h2>
+      </div>
+      <div >
+
+        <div style="justify-content: center;align-items: center;">
+          <div  >
+            <div style="justify-content: center;align-items: center; text-align: center;" >
+              <div  style="justify-content: center;align-items: center;">
+                <figure>
+                  <img src="images/how it works/capture.jpg" alt=""  width="700px;" style="border-radius: 34px; align-items: center;" >
+                </figure>
+              </div>
+              <div >
+                <figure>
+                  <img src="images/how it works/upload.png" alt=""  width="700px;" style="border-radius: 34px; align-items: center;">
+                </figure>
+              </div>
+              <div >
+                <figure>
+                  <img src="images/how it works/predict.png" alt=""  width="700px;" style="border-radius: 34px; align-items: center;">
+                </figure>
+              </div>
+            
+            </div>
+          </div>
+          <div  style="justify-content: center;align-items: center;text-align: center;">
+            <ul style="list-style: none;">
+              <li >
+                <a   href="#tab-1">
+                  <h4>Capture Photo </h4>
+                  <p>Capture the photo of plant leaf to be predicted</p>
+                </a>
+              </li>
+              <li >
+                <a   href="#tab-2">
+                  <h4>Upload Photo</h4>
+                  <p>Upload the Photo of the plant leaf to be predicted</p>
+                </a>
+              </li>
+              <li >
+                <a >Predict</h4>
+                  <p>The system will predict if leaf is diseased or healthy</p>
+                </a>
+              </li>
+              <li >
+                <a  href="#tab-4">
+                  <h4>Result</h4>
+                  <p>Take proper measures if leaf found diseased</p>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <br>
+          <br>
+        </div>
+      </div>
+    </section><!-- End Featured Section -->
+
+
+    <br>
+
+    <!-- ======= Disease Section ======= -->
+    <section id="disease" style="justify-content: center;"  >
+      <div style="text-align: center; font-size: 32px;">
+        <h2>Diseases</h2>
+      </div>
+      <div  style="justify-content: center; display: flex;">
+
+        
+
+        <div style="justify-content: center;" >
+          <div style="margin: 20px;">
+            <div  style="width: 25rem;">
+              <img src="images/diseases/earlyblight.jpg" width="400" height="250"  alt="...">
+              <div >
+                <h5 ><b>Early Blight</b></h5>
+                <p >Early blight is a common tomato disease caused by the fungus Alternaria solani. It
+                  can affect almost all parts of the tomato plants, including the leaves, stems, and fruits. The plants
+                  may not die, but they will be weakened and will set fewer tomatoes than normal. Early blight generally
+                  attacks older plants, but it can also occur on seedlings</p>
+              
+              </div>
+            </div>
+          </div>
+          <div style="margin: 20px;">
+            <div  style="width: 25rem;">
+              <img src="images/diseases/lateblight.jpg" width="400" height="250"  alt="...">
+              <div >
+                <h5 ><b>Late Blight</b></h5>
+                <p >Tomatoes are especially susceptible to an affliction known as late blight.
+                  Characterized by large, irregularly-shaped, greasy gray spots, Although plants infected with late
+                  blight tend to die quickly, you can often salvage some of your tomatoes from the plant before they
+                  meet their fate thanks to these tips for dealing with late blight.</p>
+                
+              </div>
+            </div>
+          </div>
+          <div style="margin: 20px;">
+            <div style="width: 25rem;">
+              <img src="images/diseases/septorialeaf.webp" width="400" height="250"  alt="...">
+              <div >
+                <h5 ><b>Septoria Leaf Spot</b></h5>
+                <p >Septoria leaf spot is a very common disease of tomatoes. It is caused by Septoria
+                  lycopersici and can affect tomatoesand other plants in the Solanaceae family. Although Septoria leaf
+                  spot is not necessarily fatal for your tomato plants, it spreads rapidly and can quickly defoliate and
+                  weaken the plants, rendering them unable to bear fruit to maturity. </p>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div >
+          <div style="margin: 20px;">
+            <div  style="width: 25rem;">
+              <img src="images/diseases/bacterial_spot_tomato.jpg" width="400" height="250"  alt="...">
+              <div >
+                <h5 ><b>Bacterial Spot</b></h5>
+                <p >Bacterial spot develops on seedlings and mature plants. On seedlings, infections
+                  may cause severe defoliation. On older plants, infections occur primarily on older leaves and appear
+                  as water-soaked areas. Leaf spots turn from yellow or light green to black or dark brown. Larger leaf
+                  blotches may also occur, especially on the margins of leaves.</p>
+             
+              </div>
+            </div>
+          </div>
+          <div style="margin: 20px;">
+            <div  style="width: 25rem;">
+              <img src="images/diseases/leafcurl.jpg" width="400" height="250"  alt="...">
+              <div >
+                <h5 ><b>Tomato Yellow Leaf Curl Virus</b></h5>
+                <p >Leaves of infected plants are small and curl upward; and show strong crumpling and
+                  interveinal and marginal yellowing. The internodes of infected plants become shortened and, together
+                  with the stunted growth, plants often take on a bushy appearance, which is sometimes referred to as
+                  'bonsai' or broccoli'-like growth.</p>
+             
+              </div>
+            </div>
+          </div>
+          <div style="margin: 20px;">
+            <div style="width: 25rem;">
+              <img src="images/diseases/leaf-mold-tomato.jpg" width="400" height="250"  alt="...">
+              <div >
+                <h5 ><b>Leaf Mold</b></h5>
+                <p >Leaf mold of tomato is caused by pathogen Passalora fulva. It is found throughout
+                  the world, predominantly on tomatoes grown where the relative humidity is high, particularly in
+                  plastic greenhouses. Occasionally, if conditions are just right, leaf mold of tomato can be a problem
+                  on field grown fruit.Flowers, stems, and fruit may be infected.</p>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <div >
+          <div style="margin: 20px;">
+            <div  style="width: 25rem;">
+              <img src="images/diseases/targetspot.jpg" width="400" height="250" alt="...">
+              <div >
+                <h5 ><b>Target Spot</b></h5>
+                <p >Target spot of tomato is a fungal disease that attacks a diverse assortment of
+                  plants, including papaya, peppers, snap beans, potatoes, cantaloupe, and squash as well as passion
+                  flower and certain ornamentals. Target spot on tomato fruit is difficult to control because the
+                  spores, which survive on plant refuse in the soil, are carried over from season to season.</p>
+              
+              </div>
+            </div>
+          </div>
+          <div style="margin: 20px;">
+            <div  style="width: 25rem;">
+              <img src="images/diseases/tomatomosiacvirus.jpg" width="400" height="250"  alt="...">
+              <div >
+                <h5 ><b>Tomato Mosiac Virus</b></h5>
+                <p >Tomato mosaic virus is a serious and extremely contagious disease. It is also hard
+                  to identify, with symptoms varying wildly depending upon the variety and age of the infected plant,
+                  the strain of the virus, and environmental conditions.To make matters worse, it is very hard to
+                  distinguish from the closely related to tobacco mosiac virus</p>
+                
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- End Pricing Section -->
+
+
+
+
+
+  </main>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" >
+
+    <div >
+
+      <div >
+
+        <div >
+          <div style="justify-content: center; text-align: center; padding: 10px; border: 2px solid gray; background-color: gray; color: white;">
+            
+            <h3>Tomato Leaf Disease Prediction</h3>
+           
+          </div>
+        </div>
+
+
+   
+
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+  <!-- Template Main JS File -->
+  
+
+</body>
+
+</html>
+
+
+
